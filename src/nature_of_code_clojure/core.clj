@@ -3,7 +3,8 @@
             [quil.middleware :as m])
   (:require [nature-of-code-clojure.example :as example]
             [nature-of-code-clojure.random-walker :as random-walker]
-            [nature-of-code-clojure.bouncing-ball :as bouncing-ball]))
+            [nature-of-code-clojure.bouncing-ball :as bouncing-ball]
+            [nature-of-code-clojure.falling-ball :as falling-ball]))
 
 ;;; TODO: One day make this run a gui where you can select a simulation
 (println
@@ -54,3 +55,11 @@
     "bouncing-ball-simulation" "Bouncing Ball"
     [500 500]
     bouncing-ball/setup bouncing-ball/update-state bouncing-ball/draw-state))
+
+(defn run-falling-ball
+  "Runs the falling ball simulation"
+  []
+  (setup-sketch
+    "falling-ball-simulation" "Falling Ball"
+    [500 500]
+    falling-ball/setup falling-ball/update-state falling-ball/draw-state))

@@ -1,6 +1,5 @@
 (ns nature-of-code-clojure.random-walker
-  (:require [quil.core :as q]
-            [quil.middleware :as m]))
+  (:require [quil.core :as q]))
 
 (defn setup
   "Setup the simulation and return the initial state"

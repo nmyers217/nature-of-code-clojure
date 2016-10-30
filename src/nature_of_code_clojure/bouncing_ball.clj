@@ -1,6 +1,5 @@
 (ns nature-of-code-clojure.bouncing-ball
-  (:require [quil.core :as q]
-            [quil.middleware :as m]))
+  (:require [quil.core :as q]))
 
 (defn setup
   "Setup the simulation and return the initial state"
@@ -38,8 +37,8 @@
   (q/background 51)
   ; disable the stroke
   (q/no-stroke)
-  ; set the stroke and fill to azure
+  ; set the stroke to azure
   (q/fill 0 127 255)
-  ; draw the walker itself
+  ; draw the ball
   (let [{[x y] :position} state]
     (q/ellipse x y 50 50)))

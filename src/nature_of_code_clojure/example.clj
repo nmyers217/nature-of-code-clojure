@@ -1,6 +1,5 @@
 (ns nature-of-code-clojure.example
-  (:require [quil.core :as q]
-            [quil.middleware :as m]))
+  (:require [quil.core :as q]))
 
 (defn setup []
   ; Set frame rate to 30 frames per second.
