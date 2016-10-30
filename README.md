@@ -45,10 +45,10 @@ Once you have the project built you can run the various simulations quite easily
 ```bash
 lein repl
 ```
-Once the REPL opens and greets you with a prompt, you can run a simulation of your choice as shown below. All the available simulations can be found in [./src/nature_of_code_clojure/](./src/nature_of_code_clojure/)
+Once the REPL opens and greets you with a prompt, you can run a simulation of your choice as shown below. All the available simulations can be found in [./src/nature_of_code_clojure/core.clj](./src/nature_of_code_clojure/core.clj)
 ```
-(use 'nature-of-code.random-walker)
-(run-simulation)
+(use 'nature-of-code-clojure.core)
+(run-[simulation name])
 ```
 
 ## License
