@@ -4,7 +4,8 @@
   (:require [nature-of-code-clojure.example :as example]
             [nature-of-code-clojure.random-walker :as random-walker]
             [nature-of-code-clojure.bouncing-ball :as bouncing-ball]
-            [nature-of-code-clojure.falling-ball :as falling-ball]))
+            [nature-of-code-clojure.falling-ball :as falling-ball]
+            [nature-of-code-clojure.accel-towards-mouse :as atm]))
 
 ;;; TODO: One day make this run a gui where you can select a simulation
 (println
@@ -63,3 +64,11 @@
     "falling-ball-simulation" "Falling Ball"
     [500 500]
     falling-ball/setup falling-ball/update-state falling-ball/draw-state))
+
+(defn run-accel-towards-mouse
+  "Runs the accel towards mouse simulation"
+  []
+  (setup-sketch
+    "accel-towards-mouse-simulation" "Accelerate Towards Mouse"
+    [1000 1000]
+    atm/setup atm/update-state atm/draw-state))

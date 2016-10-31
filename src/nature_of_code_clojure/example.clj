@@ -2,7 +2,7 @@
   (:require [quil.core :as q]))
 
 (defn setup []
-  ; Set frame rate to 30 frames per second.
+  ; Set frame rate to 60 frames per second.
   (q/frame-rate 60)
   ; Set color mode to HSB (HSV) instead of default RGB.
   (q/color-mode :hsb)
