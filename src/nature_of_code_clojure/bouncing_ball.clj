@@ -21,8 +21,8 @@
          new-dy (if (or (< y 0) (> y (q/height)))
                   (* dy -1)
                   dy)]
-    {:position (map + [x y] [new-dx new-dy])
-     :velocity [new-dx new-dy]}))
+    (assoc ball :position (map + [x y] [new-dx new-dy])
+                :velocity [new-dx new-dy])))
 
 (defn update-state
   "Returns the next state given the current state"
