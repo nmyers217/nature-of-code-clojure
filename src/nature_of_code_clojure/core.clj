@@ -5,7 +5,8 @@
             [nature-of-code-clojure.random-walker :as random-walker]
             [nature-of-code-clojure.bouncing-ball :as bouncing-ball]
             [nature-of-code-clojure.falling-ball :as falling-ball]
-            [nature-of-code-clojure.accel-towards-mouse :as atm]))
+            [nature-of-code-clojure.accel-towards-mouse :as atm]
+            [nature-of-code-clojure.gravity-and-wind :as gaw]))
 
 ;;; TODO: One day make this run a gui where you can select a simulation
 (println
@@ -79,3 +80,12 @@
     [1000 1000]
     atm/setup atm/update-state atm/draw-state
     false))
+
+(defn run-gravity-and-wind
+  "Runs the bouncing ball simulation"
+  []
+  (setup-sketch
+   "gravity-and-wind-simulation" "Gravity and Wind"
+   [1000 1000]
+   gaw/setup gaw/update-state gaw/draw-state
+   false))
