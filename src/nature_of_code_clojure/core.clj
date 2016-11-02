@@ -9,32 +9,33 @@
             [nature-of-code-clojure.gravity-and-wind :as gaw]))
 
 ;;; TODO: One day make this run a gui where you can select a simulation
-(println
-  (str
-    "Run a simulation from the REPL!\n"
-    "=> (use 'nature-of-code-clojure.core)\n"
-    "=> (run-[simulation name])"))
+(defn -main [& args]
+  (println
+   (str
+     "Run a simulation from the REPL!\n"
+     "=> (use 'nature-of-code-clojure.core)\n"
+     "=> (run-[simulation name])")))
 
 (defmacro setup-sketch
   "Constructs and runs a simulation given its meta data"
   [sketch-name title size setup-fn update-fn draw-fn nav?]
   `(q/defsketch ~(symbol sketch-name)
-    :title  ~title
-    :size   ~size
-    ; setup function called only once, during sketch initialization.
-    :setup  ~setup-fn
-    ; update-state is called on each iteration before draw-state.
-    :update ~update-fn
-    :draw   ~draw-fn
-    ; the window will always be on top even when unfocused
-    ; this makes live development easier
-    :features [:keep-on-top]
-    ; These sketches use functional-mode middleware.
-    ; Check quil wiki for more info about middlewares and particularly
-    ; fun-mode.
-    :middleware (if ~nav?
-                    [m/fun-mode m/pause-on-error m/navigation-2d]
-                    [m/fun-mode m/pause-on-error])))
+     :title  ~title
+     :size   ~size
+     ; setup function called only once, during sketch initialization.
+     :setup  ~setup-fn
+     ; update-state is called on each iteration before draw-state.
+     :update ~update-fn
+     :draw   ~draw-fn
+     ; the window will always be on top even when unfocused
+     ; this makes live development easier
+     :features [:keep-on-top]
+     ; These sketches use functional-mode middleware.
+     ; Check quil wiki for more info about middlewares and particularly
+     ; fun-mode.
+     :middleware (if ~nav?
+                   [m/fun-mode m/pause-on-error m/navigation-2d]
+                   [m/fun-mode m/pause-on-error])))
 
 (defn run-example
   "Runs the example simulation"
