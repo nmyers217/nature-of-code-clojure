@@ -82,7 +82,7 @@
     false))
 
 (defn run-gravity-and-wind
-  "Runs the bouncing ball simulation"
+  "Runs the gravity and wind balls simulation"
   []
   (setup-sketch
    "gravity-and-wind-simulation" "Gravity and Wind"

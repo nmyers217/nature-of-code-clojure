@@ -15,36 +15,37 @@
 
 (defn bounce-ball
   "Return a bounced ball position and velocity"
-  [width height acceleration ball]
-  (let [{[x y] :position [dx dy] :velocity} ball
-        ; reverse the x component of velocity when a boundary is hit
+  [width height forces ball]
+  (let [{[x y] :position [dx dy] :velocity mass :mass} ball
+        ;; calculate the new components of velocity
         bounce-dx (if (or (< x 0) (> x width))
                     (* dx -1)
                     dx)
-        ; reverse the y component of velocity when a boundary is hit
         bounce-dy (if (or (< y 0) (> y height))
                     (* dy -1)
                     dy)
-        ; add acceleration and velocity and constrain the result
-        new-vel (map #(q/constrain % -8 8)
-                     (map + [bounce-dx bounce-dy] acceleration))]
-    (assoc ball :position (map + [x y] new-vel)
-           :velocity new-vel)))
+        ;; calculate the acceleration vector for this ball using the forces
+        acceleration (reduce #(map + %1 %2)
+                             (map #((second %) mass) forces))
+        ;; add acceleration and velocity and constrain the result
+        new-vel (map (comp #(q/constrain % -8 8) +)
+                     [bounce-dx bounce-dy]
+                     acceleration)]
+    (assoc ball :position (map + [x y] new-vel) :velocity new-vel)))
 
 (defn setup
-  "Return a vector of 20 ball maps and a vector of the forces"
+  "Return a vector of 20 ball maps and a map of force functions"
   []
   {:balls (random-balls (q/width) (q/height) 20)
-   :forces [[0 0.01] [0.01 0]]})
+   :forces {:gravity (fn [mass] [0.0 0.01])
+            :wind    (fn [mass] (map #(/ % mass) [0.03 0.0]))}})
 
 (defn update-state
   "Accelerates and bounces all the balls"
   [state]
-  (let [{:keys [balls forces]} state
-        acceleration (reduce #(map + %1 %2) [0 0] forces)]
-    (assoc state :balls (map
-                         #(bounce-ball (q/width) (q/height) acceleration %)
-                         balls))))
+  (let [{:keys [balls forces]} state]
+    (assoc state :balls
+           (map #(bounce-ball (q/width) (q/height) forces %) balls))))
 
 (defn draw-state
   "Given the current state, draw it"
