@@ -44,6 +44,16 @@
   [state]
   state)
 
+(defn on-key-down
+  "Updates the state when a key is pressed"
+  [state event]
+  state)
+
+(defn on-key-up
+  "Updates the state when a key is released"
+  [state]
+  state)
+
 (defn draw-surface
   "Draws a surface"
   [{:keys [color rect]}]
